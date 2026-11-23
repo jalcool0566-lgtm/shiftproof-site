@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShiftProof — Nurse Shift Calendar &amp; Paycheck Auditor for iOS</title>
+  <meta name="description" content="Check every hospital paycheck in 15 seconds. FLSA blended overtime, night & weekend differentials, missed lunch tracking, and HR proof PDFs — 100% private & on-device." />
+  <style>
+    :root { --teal:#0F766E; --teal-dark:#0B5752; --bg:#F8FAFC; --card:#FFFFFF; --ink:#0F172A; --muted:#475569; --red:#DC2626; --border:#E2E8F0; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; }
+    .wrap { max-width:920px; margin:0 auto; padding:24px 20px 64px; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:12px 0 36px; }
+    .logo { font-weight:800; font-size:20px; color:var(--teal); text-decoration:none; }
+    nav a { color:var(--muted); text-decoration:none; margin-left:20px; font-size:14px; font-weight:500; }
+    nav a:hover { color:var(--teal); }
+    .hero { background:linear-gradient(135deg, var(--teal), var(--teal-dark)); color:#fff; border-radius:22px; padding:42px 32px; margin-bottom:28px; }
+    .badge { display:inline-block; background:rgba(255,255,255,0.16); padding:5px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:0.4px; margin-bottom:14px; }
+    h1 { font-size:36px; line-height:1.18; margin-bottom:14px; }
+    .hero p { font-size:17px; opacity:0.92; max-width:640px; margin-bottom:22px; }
+    .cta-row { display:flex; flex-wrap:wrap; gap:12px; }
+    .btn { display:inline-block; padding:12px 22px; border-radius:12px; font-weight:700; text-decoration:none; font-size:15px; }
+    .btn-white { background:#fff; color:var(--teal-dark); }
+    .btn-ghost { background:rgba(255,255,255,0.15); color:#fff; border:1px solid rgba(255,255,255,0.3); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; margin-bottom:28px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; }
+    .card h3 { font-size:17px; margin-bottom:6px; color:var(--ink); }
+    .card p { font-size:14px; color:var(--muted); }
+    .calc-box { background:var(--card); border:1px solid var(--border); border-radius:18px; padding:26px; margin-bottom:28px; }
+    .calc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; margin:16px 0; }
+    label { display:block; font-size:12px; font-weight:700; color:var(--muted); margin-bottom:5px; }
+    input { width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; font-size:15px; }
+    .result { background:#FEF2F2; border:1.5px solid #FCA5A5; border-radius:14px; padding:18px; margin-top:14px; }
+    .result strong { color:var(--red); font-size:20px; }
+    footer { text-align:center; font-size:13px; color:var(--muted); margin-top:36px; border-top:1px solid var(--border); padding-top:20px; }
+    footer a { color:var(--muted); margin:0 10px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="index.html">ShiftProof</a>
+      <nav>
+        <a href="#calculator">FLSA Calculator</a>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <span class="badge">100% ON-DEVICE · ZERO ACCOUNT · BUILT FOR BEDSIDE NURSES</span>
+      <h1>Stop trusting hospital payroll blindly.</h1>
+      <p>Log 12-hour shifts, track night/weekend/charge differentials and missed lunches, verify FLSA blended overtime, and export HR proof PDFs — all offline on your iPhone.</p>
+      <div class="cta-row">
+        <a class="btn btn-white" href="#calculator">Try Free FLSA OT Checker ↓</a>
+        <a class="btn btn-ghost" href="support.html">iOS App Support</a>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="card">
+        <h3>FLSA Blended OT Math</h3>
+        <p>Under 29 CFR § 778.109, shift differentials must be blended into your overtime rate. ShiftProof flags hospitals that illegally pay base-only OT.</p>
+      </div>
+      <div class="card">
+        <h3>15-Second Paystub Audit</h3>
+        <p>Scan Kronos, UKG, Workday, or ADP paystubs locally with Apple Vision OCR. Catch missing diffs and auto-deducted meal breaks instantly.</p>
+      </div>
+      <div class="card">
+        <h3>Zero Employer Tracking</h3>
+        <p>No account, no cloud server, no data collection. Your schedule and pay stubs stay strictly on your iPhone.</p>
+      </div>
+    </div>
+
+    <section class="calc-box" id="calculator">
+      <h2>Free FLSA Blended Overtime Check (1-Week Quick Test)</h2>
+      <p style="color:var(--muted); font-size:14px; margin-top:4px;">Worked over 40 hours in one week with night, weekend, or charge differentials? See how much a base-only OT mistake costs you.</p>
+      <div class="calc-grid">
+        <div><label>Base Hourly Rate ($)</label><input id="base" type="number" step="0.5" value="48" /></div>
+        <div><label>Total Hours in 1 Week</label><input id="hours" type="number" step="0.5" value="48.5" /></div>
+        <div><label>Night/Wknd/Charge Diff ($/hr)</label><input id="diff" type="number" step="0.5" value="8.5" /></div>
+        <div><label>Diff Hours That Week</label><input id="diffHours" type="number" step="0.5" value="48.5" /></div>
+      </div>
+      <div class="result" id="out"></div>
+    </section>
+
+    <footer>
+      <p>© 2026 ShiftProof. Personal wage verification utility — not legal advice.</p>
+      <p style="margin-top:8px;">
+        <a href="privacy.html">Privacy Policy</a> ·
+        <a href="terms.html">Terms of Use</a> ·
+        <a href="support.html">Support &amp; FAQ</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    function calc() {
+      const base = Math.max(0, parseFloat(document.getElementById('base').value) || 0);
+      const hrs = Math.max(0, parseFloat(document.getElementById('hours').value) || 0);
+      const diff = Math.max(0, parseFloat(document.getElementById('diff').value) || 0);
+      const diffHrs = Math.min(hrs, Math.max(0, parseFloat(document.getElementById('diffHours').value) || 0));
+      const straight = hrs * base + diffHrs * diff;
+      const blended = hrs > 0 ? straight / hrs : base;
+      const otHrs = Math.max(0, hrs - 40);
+      const legalOTPrem = 0.5 * blended * otHrs;
+      const baseOnlyPrem = 0.5 * base * otHrs;
+      const loss = Math.max(0, legalOTPrem - baseOnlyPrem);
+      const gross = straight + legalOTPrem;
+      document.getElementById('out').innerHTML =
+        `<div>Legal FLSA Blended Rate: <b>$${blended.toFixed(2)}/hr</b> (vs $${base.toFixed(2)} base) &nbsp;|&nbsp; Expected Week Gross: <b>$${gross.toFixed(2)}</b></div>` +
+        `<div style="margin-top:6px;">If payroll used Base-Only OT, you are shorted: <strong>$${loss.toFixed(2)}</strong> on this week alone (${otHrs.toFixed(1)}h OT).</div>`;
+    }
+    ['base','hours','diff','diffHours'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+    calc();
+  </script>
+</body>
+</html>
